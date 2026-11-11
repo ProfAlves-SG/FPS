@@ -7,6 +7,7 @@ public class BulletClass : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float speed;
     [SerializeField] private float lifetime = 5f;
+    [SerializeField] private float damage = 10f;
 
     [SerializeField] private GameObject impactEffectPrefab;
 
@@ -24,11 +25,17 @@ public class BulletClass : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        SpawnImpact(collision);
+        SpawnImpactEffect(collision);
+        
+        if (collision.gameObject.TryGetComponent(out HealthTest health))
+        {
+            health.TakeDamage(damage);
+        }
+        
         Destroy(gameObject);
     }
 
-    private void SpawnImpact(Collision collision)
+    private void SpawnImpactEffect(Collision collision)
     {
         Vector3 point = transform.position;
         Vector3 normal = -transform.forward;

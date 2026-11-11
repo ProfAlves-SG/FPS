@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     [Header("Bullet")]
     [SerializeField] private float speed = 60f;
     [SerializeField] private float lifetime = 5f;
+    [SerializeField] private float damage = 10f;
     
     [SerializeField] private GameObject impactEffectPrefab;
     
@@ -25,6 +26,12 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         SpawnImpactEffect(collision);
+        
+        if (collision.gameObject.TryGetComponent(out Health health))
+        {
+            health.TakeDamage(damage);
+        }
+        
         Destroy(gameObject);
     }
     

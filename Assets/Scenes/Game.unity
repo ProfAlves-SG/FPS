@@ -1565,7 +1565,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1745952345093756033, guid: 03fe101b82c342e4a906b84ee7df5f26,
     type: 3}
   firePoint: {fileID: 809266706}
-  chaseRange: 10
+  chaseRange: 7.77
   attackRange: 6
   timeBetweenShots: 2
 --- !u!195 &1682402374
